@@ -2,9 +2,10 @@
 build-by-default: true
 branches:
 - pm4
-- pm 5
+- pm5
 projects:
   TNTBlastRadius:
     path: ""
     icon: icon.gif
+    lint: false
 ...
