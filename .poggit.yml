@@ -7,5 +7,4 @@ projects:
   TNTBlastRadius:
     path: ""
     icon: icon.gif
-    lint: false
 ...
