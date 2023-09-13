@@ -8,4 +8,4 @@ With this plugin you can modify the TNT blast radius through the config. Min bei
 
 Discord: ace873056  
 
-Enjoy:)
+Enjoy!:)
