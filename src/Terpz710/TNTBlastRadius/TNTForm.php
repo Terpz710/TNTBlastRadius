@@ -12,7 +12,7 @@ use jojoe77777\FormAPI\SimpleForm;
 class TNTForm implements Listener {
 
     public static function execute(Player $player, int $blastRadius = 4): void {
-        $form = new CustomForm(function (Player $player, ?array $data) use ($blastRadius) {
+        $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
                 $radius = max(1, min(25, $data[0]));
 
