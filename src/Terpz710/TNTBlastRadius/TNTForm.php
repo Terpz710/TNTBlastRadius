@@ -5,18 +5,10 @@ namespace Terpz710\TNTBlastRadius;
 use pocketmine\player\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
-use Terpz710\TNTBlastRadius\Main;
-use Terpz710\TNTBlastRadius\TNTCommand;
 
 class TNTForm {
 
-    private $player;
-
-    public function __construct(Player $player) {
-        $this->player = $player;
-    }
-
-    public function sendForm(): void {
+    public static function execute(Player $player): void {
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
                 $radius = max(1, min(25, $data[0]));
@@ -39,6 +31,6 @@ class TNTForm {
 
         $form->setTitle("TNT Blast Radius");
         $form->addSlider("Radius:", 1, 25);
-        $this->player->sendForm($form);
+        $player->sendForm($form);
     }
 }
