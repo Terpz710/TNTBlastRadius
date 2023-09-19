@@ -2,7 +2,7 @@
 
 namespace Terpz710\TNTBlastRadius;
 
-use pocketmine\player\Player;
+use pocketmine\Player;
 use pocketmine\form\SimpleForm;
 use pocketmine\form\ModalForm;
 
