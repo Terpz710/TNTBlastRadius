@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\entity\object\PrimedTNT;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use Terpz710\TNTBlastRadius\TNTCommand;
 use Terpz710\TNTBlastRadius\TNTForm;
 
