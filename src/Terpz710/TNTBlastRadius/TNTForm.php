@@ -1,6 +1,6 @@
 <?php
 
-namespace Terpz710;
+namespace Terpz710\TNTBlastRadius;
 
 use pocketmine\Player;
 use pocketmine\form\SimpleForm;
