@@ -16,7 +16,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand($this));
+        $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand());
     }
 
     public function onExplosionPrime(EntityPreExplodeEvent $event) {
