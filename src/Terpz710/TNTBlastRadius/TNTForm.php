@@ -6,6 +6,7 @@ use pocketmine\player\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use Terpz710\TNTBlastRadius\Main;
+use Terpz710\TNTBlastRadius\TNTCommand;
 
 class TNTForm {
 
