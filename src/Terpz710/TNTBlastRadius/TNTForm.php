@@ -16,23 +16,24 @@ class TNTForm implements Listener {
             if ($data !== null) {
                 $radius = max(1, min(25, $data[0]));
 
-                $confirmForm = new SimpleForm(function (Player $player, int $data) use ($radius)) {
+                $confirmForm = new SimpleForm(function (Player $player, int $data) use ($radius, $blastRadius) {
                     if ($data === 0) {
                         $tnt = $event->getEntity();
-                    if ($tnt instanceof PrimedTNT) {
-                        $scaledRadius = max(1, min(25, $blastRadius));
-                        $event->setRadius($scaledRadius);
-                    } else {
-                        $player->sendMessage("Blast radius change canceled.");
+                        if ($tnt instanceof PrimedTNT) {
+                            $scaledRadius = max(1, min(25, $radius));
+                            $event->setRadius($scaledRadius);
+                        } else {
+                            $player->sendMessage("Blast radius change canceled.");
+                        }
                     }
-                }
+                });
                 $confirmForm->setTitle("Confirm Radius");
                 $confirmForm->setContent("Are you sure you want to set the TNT blast radius to $radius?");
                 $confirmForm->addButton("Yes");
                 $confirmForm->addButton("No");
                 $player->sendForm($confirmForm);
             }
-        }
+        });
 
         $form->setTitle("TNT Blast Radius");
         $form->addSlider("Radius:", 1, 25, 1, $blastRadius);
