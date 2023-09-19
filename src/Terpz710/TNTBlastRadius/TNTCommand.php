@@ -5,8 +5,8 @@ namespace Terpz710\TNTBlastRadius;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use pocketmine\form\SimpleForm;
-use pocketmine\form\ModalForm;
+use Terpz710\BlastRadius\Main;
+use Terpz710\BlastRadius\TNTForm;
 
 class TNTCommand extends Command {
 
