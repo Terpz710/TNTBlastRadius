@@ -2,10 +2,9 @@
 
 namespace Terpz710\TNTBlastRadius;
 
-use pocketmine\player\Player;
-use pocketmine\form\SimpleForm;
-use pocketmine\form\ModalForm;
-use pocketmine\BlastRadius\Main;
+use pocketmine\Player;
+use jojoe77777\FormAPI\CustomForm;
+use jojoe77777\FormAPI\SimpleForm;
 
 class TNTForm {
 
@@ -16,12 +15,12 @@ class TNTForm {
     }
 
     public function sendForm(): void {
-        $form = new \pocketmine\form\SimpleForm(function (Player $player, ?int $data) {
+        $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
-                $radius = max(1, min(25, $data));
+                $radius = max(1, min(25, $data[0])); // Assuming the slider is the first element.
 
-                $confirmForm = new \pocketmine\form\ModalForm(function (Player $player, bool $data) use ($radius) {
-                    if ($data) {
+                $confirmForm = new SimpleForm(function (Player $player, int $data) use ($radius) {
+                    if ($data === 0) {
                         $scaledRadius = max(1, min(25, $radius));
                         $player->sendMessage("Blast radius set to: " . $scaledRadius);
                     } else {
@@ -30,14 +29,13 @@ class TNTForm {
                 });
                 $confirmForm->setTitle("Confirm Radius");
                 $confirmForm->setContent("Are you sure you want to set the TNT blast radius to $radius?");
-                $confirmForm->setButton1("Yes");
-                $confirmForm->setButton2("No");
+                $confirmForm->addButton("Yes");
+                $confirmForm->addButton("No");
                 $player->sendForm($confirmForm);
             }
         });
 
         $form->setTitle("TNT Blast Radius");
-        $form->setContent("Adjust the TNT blast radius:");
         $form->addSlider("Radius:", 1, 25);
         $this->player->sendForm($form);
     }
