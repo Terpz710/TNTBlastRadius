@@ -12,14 +12,16 @@ use jojoe77777\FormAPI\SimpleForm;
 class TNTForm implements Listener {
 
     public static function execute(Player $player, int $blastRadius = 4): void {
-        $form = new CustomForm(function (Player $player, ?array $data) {
+        $form = new CustomForm(function (Player $player, ?array $data) use ($blastRadius) {
             if ($data !== null) {
                 $radius = max(1, min(25, $data[0]));
 
                 $confirmForm = new SimpleForm(function (Player $player, int $data) use ($radius) {
                     if ($data === 0) {
-                        $scaledRadius = max(1, min(25, $radius));
-                        $player->sendMessage("Blast radius set to: " . $scaledRadius);
+                        $tnt = $event->getEntity();
+                    if ($tnt instanceof PrimedTNT) {
+                        $scaledRadius = max(1, min(25, $blastRadius));
+                        $event->setRadius($scaledRadius);
                     } else {
                         $player->sendMessage("Blast radius change canceled.");
                     }
@@ -35,14 +37,5 @@ class TNTForm implements Listener {
         $form->setTitle("TNT Blast Radius");
         $form->addSlider("Radius:", 1, 25, 1, $blastRadius);
         $player->sendForm($form);
-    }
-
-    public function onExplosionPrime(EntityPreExplodeEvent $event) {
-        $tnt = $event->getEntity();
-        if ($tnt instanceof PrimedTNT) {
-            $blastRadius = 4; // Default blast radius is 4. You can adjust this as needed.
-            $scaledRadius = max(1, min(25, $blastRadius));
-            $event->setRadius($scaledRadius);
-        }
     }
 }
