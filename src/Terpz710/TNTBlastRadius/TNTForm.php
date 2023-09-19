@@ -2,9 +2,10 @@
 
 namespace Terpz710\TNTBlastRadius;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
+use Terpz710\TNTBlastRadius\Main;
 
 class TNTForm {
 
