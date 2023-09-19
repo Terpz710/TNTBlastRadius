@@ -16,13 +16,14 @@ class TNTCommand extends Command {
         $this->setAliases(["tntedit"]);
     }
 
-    public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
-        if ($sender instanceof Player) {
-            $form = new TNTForm($sender);
-            $form->sendForm();
-        } else {
-            $sender->sendMessage("This command can only be used in-game.");
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+    if ($sender instanceof Player) {
+        if ($command->getName() === "tntradius" || $command->getName() === "tntedit") {
+            TNTForm::execute($sender);
         }
-        return true;
+    } else {
+        $sender->sendMessage("This command can only be used in-game.");
+        }
+    return true;
     }
 }
