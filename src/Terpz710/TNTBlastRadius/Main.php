@@ -16,7 +16,7 @@ class Main extends PluginBase implements Listener {
 
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand());
+        $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand($this));
     }
 
     public function onExplosionPrime(EntityPreExplodeEvent $event) {
@@ -34,5 +34,9 @@ class Main extends PluginBase implements Listener {
                 }
             }
         }
+    }
+
+    public function setPendingRadiusChange(Player $player, int $radius): void {
+        $this->pendingRadiusChange[$player->getName()] = $radius;
     }
 }
