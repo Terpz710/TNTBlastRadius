@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\entity\object\PrimedTNT;
-use pocketmine\player\Player;
+use pocketmine\Player;
 use Terpz710\TNTBlastRadius\TNTCommand;
 use Terpz710\TNTBlastRadius\TNTForm;
 
@@ -22,11 +22,16 @@ class Main extends PluginBase implements Listener {
     public function onExplosionPrime(EntityPreExplodeEvent $event) {
         $tnt = $event->getEntity();
         if ($tnt instanceof PrimedTNT) {
-            if (isset($this->pendingRadiusChange[$event->getPlayer()->getName()])) {
-                $radius = $this->pendingRadiusChange[$event->getPlayer()->getName()];
-                $scaledRadius = max(1, min(25, $radius));
-                $event->setRadius($scaledRadius);
-                unset($this->pendingRadiusChange[$event->getPlayer()->getName()]);
+            
+            $exploder = $tnt->getOwningEntity();
+
+            if ($exploder instanceof Player) {
+                if (isset($this->pendingRadiusChange[$exploder->getName()])) {
+                    $radius = $this->pendingRadiusChange[$exploder->getName()];
+                    $scaledRadius = max(1, min(25, $radius));
+                    $event->setRadius($scaledRadius);
+                    unset($this->pendingRadiusChange[$exploder->getName()]);
+                }
             }
         }
     }
