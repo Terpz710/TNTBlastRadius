@@ -19,7 +19,7 @@ class TNTForm {
     public function sendForm(): void {
         $form = new CustomForm(function (Player $player, ?array $data) {
             if ($data !== null) {
-                $radius = max(1, min(25, $data[0])); // Assuming the slider is the first element.
+                $radius = max(1, min(25, $data[0]));
 
                 $confirmForm = new SimpleForm(function (Player $player, int $data) use ($radius) {
                     if ($data === 0) {
