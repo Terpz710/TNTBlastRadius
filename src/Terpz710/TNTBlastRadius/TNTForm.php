@@ -2,9 +2,10 @@
 
 namespace Terpz710\TNTBlastRadius;
 
-use pocketmine\player\Player;
+use pocketmine\Player;
 use pocketmine\form\SimpleForm;
 use pocketmine\form\ModalForm;
+use pocketmine\BlastRadius\Main;
 
 class TNTForm {
 
@@ -15,11 +16,11 @@ class TNTForm {
     }
 
     public function sendForm(): void {
-        $form = new SimpleForm(function (Player $player, ?int $data) {
+        $form = new \pocketmine\form\SimpleForm(function (Player $player, ?int $data) {
             if ($data !== null) {
                 $radius = max(1, min(25, $data));
 
-                $confirmForm = new ModalForm(function (Player $player, bool $data) use ($radius) {
+                $confirmForm = new \pocketmine\form\ModalForm(function (Player $player, bool $data) use ($radius) {
                     if ($data) {
                         $scaledRadius = max(1, min(25, $radius));
                         $player->sendMessage("Blast radius set to: " . $scaledRadius);
