@@ -7,8 +7,43 @@
 <a href="https://poggit.pmmp.io/p/TNTBlastRadius"><img src="https://poggit.pmmp.io/shield.dl/TNTBlastRadius"></a>
 
 # Description
-With this plugin you can modify the TNT blast radius through the config. Min being 1 and max being 8. A very simple plugin! If you have any questions please feel free to DM me via discord.
+A Pocketmine-MP plugin that allows the user to change the blast radius in-game using a command. When the player runs the command it will send a UI. If you have any questions please feel free to DM me via discord.
 
 Discord: ace873056  
 
 Enjoy!:)
+
+# Permissions/Commands:
+
+/tntradius
+
+tntradius.command
+
+defualt: op
+
+/tntedit
+
+tntradius.command
+
+default:op
+
+# Screenshots:
+
+**RadiusUI**
+<img src="https://ibb.co/kqLHn8P">
+
+**ConfirmationUI**
+<img src="https://ibb.co/bXnY6tq">
+
+**SuccessMessages/Title**
+<img src="https://ibb.co/vvZqN0D">
+
+**BlastRadiusLevelOne**
+<img src="https://ibb.co/kqLHn8P">
+
+**BlastRadiusLevelTwentyFive**
+<img src="https://ibb.co/bXnY6tq">
+
+# Dependency:
+
+FormAPI by JoJoe77777
