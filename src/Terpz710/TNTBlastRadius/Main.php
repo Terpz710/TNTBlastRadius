@@ -10,6 +10,7 @@ use pocketmine\entity\object\PrimedTNT;
 use pocketmine\player\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
+use Terpz710\TNTBlastRadius\Command\TNTCommand;
 
 class Main extends PluginBase implements Listener {
 
