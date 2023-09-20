@@ -9,16 +9,15 @@ use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command {
 
-    /**
- * @param Main $plugin
- */
-public function __construct(Main $plugin) {
-    parent::__construct("tntradius", "Adjust the TNT blast radius");
-    $this->setPermission("tntradius.command");
-    $this->setAliases(["tntedit"]);
-    $this->plugin = $plugin;
-}
+private $plugin;
 
+    public function __construct(Main $plugin) {
+        parent::__construct("tntradius", "Adjust the TNT blast radius");
+        $this->setPermission("tntradius.command");
+        $this->setAliases(["tntedit"]);
+        $this->plugin = $plugin;
+    }
+    
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if ($sender instanceof Player) {
             $this->plugin->openRadiusSelectorUI($sender); // Call the openRadiusSelectorUI method from the Main class.
