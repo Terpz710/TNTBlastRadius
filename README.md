@@ -30,19 +30,19 @@ default:op
 # Screenshots:
 
 **RadiusUI**
-<img src="https://ibb.co/kqLHn8P">
+<img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/RadiusUI.png">
 
 **ConfirmationUI**
-<img src="https://ibb.co/bXnY6tq">
+<img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/ConfirmationUI.png">
 
 **SuccessMessages/Title**
-<img src="https://ibb.co/vvZqN0D">
+<img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/SuccessMessages.png">
 
 **BlastRadiusLevelOne**
-<img src="https://ibb.co/kqLHn8P">
+<img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/BlastRadiusLevelOne.png">
 
 **BlastRadiusLevelTwentyFive**
-<img src="https://ibb.co/bXnY6tq">
+<img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/BlastRadiusLevelTwentyFive.png">
 
 # Dependency:
 
