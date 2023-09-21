@@ -21,7 +21,7 @@ class TNTCommand extends Command {
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         $main = $this->getOwningPlugin();
         if ($sender instanceof Player) {
-            $this->main->openRadiusSelectorUI($sender);
+            $this->owningPlugin->openRadiusSelectorUI($sender);
         } else {
             $sender->sendMessage("This command can only be used in-game.");
         }
