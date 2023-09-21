@@ -15,7 +15,7 @@ class TNTCommand extends Command {
 
     public function __construct(Main $main) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
-        $this->setPermission("tntradius.command");
+        $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
         $this->main = $main;
     }
