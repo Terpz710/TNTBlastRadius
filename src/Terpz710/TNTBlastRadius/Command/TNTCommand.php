@@ -11,16 +11,18 @@ use Terpz710\TNTBlastRadius\Main;
 class TNTCommand extends Command {
     use PluginOwnedTrait;
 
-    public function __construct(Main $plugin) {
+    private $main;
+
+    public function __construct(Main $main) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
         $this->setPermission("tntradius.command");
         $this->setAliases(["tntedit"]);
-        $this->owningPlugin = $plugin;
+        $this->main = $main;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if ($sender instanceof Player) {
-            $this->getOwningPlugin()->openRadiusSelectorUI($sender);
+            $this->main->openRadiusSelectorUI($sender);
         } else {
             $sender->sendMessage("This command can only be used in-game.");
         }
