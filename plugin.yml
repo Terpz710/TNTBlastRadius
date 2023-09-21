@@ -6,5 +6,5 @@ author: Terpz710
 description: Edit TNT blast radius.
 permissions:
   tntblastradius.cmd:
-    description: Allows players to use the /tntradius command.
+    description: Allows players to use the command.
     default: op
