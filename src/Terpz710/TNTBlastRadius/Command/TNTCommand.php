@@ -29,3 +29,4 @@ class TNTCommand extends Command {
         return true;
     }
 }
+
