@@ -6,6 +6,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginOwnedTrait;
+use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command {
     use PluginOwnedTrait;
@@ -19,7 +20,9 @@ class TNTCommand extends Command {
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if ($sender instanceof Player) {
-            $this->owningPlugin->openRadiusSelectorUI($sender);
+            /** @var Main $main */
+            $main = $this->getOwningPlugin();
+            $main->openRadiusSelectorUI($sender);
         } else {
             $sender->sendMessage("This command can only be used in-game.");
         }
