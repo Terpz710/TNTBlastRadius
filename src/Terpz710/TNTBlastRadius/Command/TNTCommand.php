@@ -17,7 +17,7 @@ class TNTCommand extends Command {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
         $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
-        $this->main = $main;
+        $this->owningPlugin = $main;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
