@@ -15,12 +15,12 @@ class TNTCommand extends Command {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
         $this->setPermission("tntradius.command");
         $this->setAliases(["tntedit"]);
-        $this->setPlugin($plugin);
+        $this->owningPlugin = $plugin;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if ($sender instanceof Player) {
-            $this->getPlugin()->openRadiusSelectorUI($sender);
+            $this->getOwningPlugin()->openRadiusSelectorUI($sender);
         } else {
             $sender->sendMessage("This command can only be used in-game.");
         }
