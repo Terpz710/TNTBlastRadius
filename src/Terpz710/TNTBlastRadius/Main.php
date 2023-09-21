@@ -4,7 +4,6 @@ namespace Terpz710\TNTBlastRadius;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use Terpz710\TNTBlastRadius\Command\TNTCommand;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\entity\object\PrimedTNT;
 use pocketmine\player\Player;
