@@ -6,7 +6,6 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginOwnedTrait;
-use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command {
     use PluginOwnedTrait;
