@@ -19,6 +19,7 @@ class TNTCommand extends Command {
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
+        $main = $this->getOwningPlugin();
         if ($sender instanceof Player) {
             $this->main->openRadiusSelectorUI($sender);
         } else {
