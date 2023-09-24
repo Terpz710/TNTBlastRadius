@@ -5,17 +5,20 @@ namespace Terpz710\TNTBlastRadius\Command;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use pocketmine\plugin\PluginOwnedTrait;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command {
-    use PluginOwnedTrait;
+
+    /** @var Plugin */
+    private $ownedPlugin;
 
     public function __construct(Main $main) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
         $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
-        $this->owningPlugin = $main;
+        $this->ownedPlugin = $main;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
@@ -27,5 +30,9 @@ class TNTCommand extends Command {
             $sender->sendMessage("This command can only be used in-game.");
         }
         return true;
+    }
+
+    public function getOwningPlugin(): Plugin {
+        return $this->ownedPlugin;
     }
 }
