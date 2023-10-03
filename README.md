@@ -13,8 +13,8 @@ Discord: ace873056
 
 Enjoy!:)
 
-# Permissions/Commands:
-
+# Permissions/Commands
+```
 /tntradius
 
 tntradius.command
@@ -26,6 +26,7 @@ defualt: op
 tntradius.command
 
 default:op
+```
 
 # Screenshots:
 
@@ -44,6 +45,6 @@ default:op
 **BlastRadiusLevelTwentyFive**
 <img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/BlastRadiusLevelTwentyFive.png">
 
-# Dependency:
+# Dependency
 
 FormAPI by JoJoe77777
