@@ -7,15 +7,16 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\plugin\Plugin;
+use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command implements PluginOwned {
 
     /** @var Plugin */
-    private $plugin;
+    private $main;
 
-    public function __construct(Plugin $plugin) {
+    public function __construct(Main $main) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
-        $this->plugin = $plugin;
+        $this->plugin = $main;
         $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
     }
