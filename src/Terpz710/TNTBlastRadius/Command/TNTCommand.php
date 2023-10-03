@@ -12,9 +12,9 @@ use Terpz710\TNTBlastRadius\Main;
 class TNTCommand extends Command {
 
     /** @var Plugin */
-    private $Main;
+    private $Plugin;
 
-    public function __construct(Main $main) {
+    public function __construct(Plugin $plugin) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
         $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
@@ -32,6 +32,6 @@ class TNTCommand extends Command {
     }
 
     public function getOwningPlugin(): Plugin {
-        return $this->Main;
+        return $this->Pluggin;
     }
 }
