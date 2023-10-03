@@ -12,11 +12,11 @@ use Terpz710\TNTBlastRadius\Main;
 class TNTCommand extends Command implements PluginOwned {
 
     /** @var Plugin */
-    private $main;
+    private $plugin;
 
-    public function __construct(Main $main) {
+    public function __construct(Plugin $plugin) {
         parent::__construct("tntradius", "Adjust the TNT blast radius");
-        $this->plugin = $main;
+        $this->plugin = $plugin;
         $this->setPermission("tntblastradius.cmd");
         $this->setAliases(["tntedit"]);
     }
@@ -27,7 +27,12 @@ class TNTCommand extends Command implements PluginOwned {
 
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool {
         if ($sender instanceof Player) {
-            $this->plugin->openRadiusSelectorUI($sender);
+            if ($this->plugin instanceof Main) {
+                $main = $this->plugin;
+                $main->openRadiusSelectorUI($sender);
+            } else {
+                $sender->sendMessage("The plugin is not an instance of Main.");
+            }
         } else {
             $sender->sendMessage("This command can only be used in-game.");
         }
