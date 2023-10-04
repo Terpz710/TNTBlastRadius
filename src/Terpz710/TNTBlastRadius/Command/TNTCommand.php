@@ -30,8 +30,6 @@ class TNTCommand extends Command implements PluginOwned {
             if ($this->plugin instanceof Main) {
                 $main = $this->plugin;
                 $main->openRadiusSelectorUI($sender);
-            } else {
-                $sender->sendMessage("The plugin is not an instance of Main.");
             }
         } else {
             $sender->sendMessage("This command can only be used in-game.");
