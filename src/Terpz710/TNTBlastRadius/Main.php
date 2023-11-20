@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terpz710\TNTBlastRadius;
 
 use pocketmine\plugin\PluginBase;
@@ -7,23 +9,42 @@ use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\entity\object\PrimedTNT;
 use pocketmine\player\Player;
+use pocketmine\world\World;
+use pocketmine\utils\Config;
+
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use Terpz710\TNTBlastRadius\Command\TNTCommand;
 
 class Main extends PluginBase implements Listener {
 
-    private $blastRadius = 4;
+    private $blastRadius = [];
+    private $worldData;
 
     public function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand($this));
+
+        $this->worldData = new Config($this->getDataFolder() . "worlddata.yml", Config::YAML);
+
+        foreach ($this->worldData->getAll() as $world => $radius) {
+            $this->blastRadius[$world] = (int)$radius;
+        }
+    }
+
+    public function onDisable(): void {
+        foreach ($this->blastRadius as $world => $radius) {
+            $this->worldData->set($world, $radius);
+        }
+        $this->worldData->save();
     }
 
     public function onEntityPreExplode(EntityPreExplodeEvent $event) {
         $tnt = $event->getEntity();
         if ($tnt instanceof PrimedTNT) {
-            $event->setRadius($this->blastRadius);
+            $world = $tnt->getWorld()->getFolderName();
+            $radius = isset($this->blastRadius[$world]) ? $this->blastRadius[$world] : 4;
+            $event->setRadius($radius);
         }
     }
 
@@ -66,7 +87,10 @@ class Main extends PluginBase implements Listener {
     }
 
     public function setTNTBlastRadius(Player $player, int $radius) {
-        $this->blastRadius = $radius;
-        $player->sendMessage("§4TNT blast radius changed to §f$radius!");
+        $world = $player->getWorld()->getFolderName();
+        $this->blastRadius[$world] = $radius;
+        $this->worldData->set($world, $radius);
+        $this->worldData->save();
+        $player->sendMessage("§4TNT blast radius changed to §f$radius for world $world!");
     }
 }
