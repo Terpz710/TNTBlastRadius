@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Terpz710\TNTBlastRadius\Command;
 
 use pocketmine\command\Command;
@@ -7,6 +9,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\plugin\Plugin;
+
 use Terpz710\TNTBlastRadius\Main;
 
 class TNTCommand extends Command implements PluginOwned {
