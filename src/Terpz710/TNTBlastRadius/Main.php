@@ -72,15 +72,15 @@ class Main extends PluginBase implements Listener {
             if ($data !== null) {
                 if ($data === 0) {
                     $this->setTNTBlastRadius($player, $radius);
-                    $player->sendTitle("§l§4Changed to §f$radius!");
+                    $player->sendTitle("§l§4Changed to §f{$radius}§4!");
                 } else {
-                    $player->sendMessage("§l§fRadius change canceled.");
+                    $player->sendMessage("§l§fRadius change canceled!");
                 }
             }
         });
 
         $confirmForm->setTitle("§l§4Confirmation");
-        $confirmForm->setContent("§l§fAre you sure to change the radius to §4$radius?");
+        $confirmForm->setContent("§l§fAre you sure to change the radius to §4{$radius}§f?");
         $confirmForm->addButton("Yes");
         $confirmForm->addButton("No");
         $player->sendForm($confirmForm);
@@ -91,6 +91,6 @@ class Main extends PluginBase implements Listener {
         $this->blastRadius[$world] = $radius;
         $this->worldData->set($world, $radius);
         $this->worldData->save();
-        $player->sendMessage("§4TNT blast radius changed to §f$radius for world $world!");
+        $player->sendMessage("§4TNT blast radius changed to §f{$radius}§4 in world §f{$world}§f!");
     }
 }
