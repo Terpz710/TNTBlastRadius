@@ -1,0 +1,15 @@
+messages:
+  radius_changed_title: "Changed to {radius}!"
+  radius_change_canceled: "Radius change canceled!"
+  radius_change_message: "TNT blast radius changed to {radius} in world {world}!"
+
+form_selector:
+  title: "TNT Blast Radius Selector"
+  label: "Select the TNT blast radius for all players:"
+  slider: "Radius"
+
+form_confirmation:
+  title: "Confirmation"
+  content: "Are you sure to change the radius to {radius}?"
+  yes_button: "Yes"
+  no_button: "No"
