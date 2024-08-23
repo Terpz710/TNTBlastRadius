@@ -1,7 +1,7 @@
 name: TNTBlastRadius
 version: 1.0.4
 api: [5.0.0]
-main: terpz710\tntblastRadius\Main
+main: terpz710\tntblastradius\Main
 author: Terpz710
 description: Edit the TNT blast radius.
 permissions:
