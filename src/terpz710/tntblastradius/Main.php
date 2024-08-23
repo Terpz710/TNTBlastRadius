@@ -77,7 +77,7 @@ class Main extends PluginBase implements Listener {
 
         $form->setTitle($this->formSelector['title']);
         $form->addLabel($this->formSelector['label']);
-        $form->addSlider($this->formSelector['slider']);
+        $form->addSlider($this->formSelector['slider'], 1, 25);
 
         $player->sendForm($form);
     }
