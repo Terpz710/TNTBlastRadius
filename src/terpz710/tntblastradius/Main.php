@@ -13,7 +13,7 @@ use pocketmine\utils\Config;
 
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\ModalForm;
-use terpz710\tntblastRadius\command\TNTCommand;
+use terpz710\tntblastradius\command\TNTCommand;
 
 class Main extends PluginBase implements Listener {
 
@@ -31,7 +31,7 @@ class Main extends PluginBase implements Listener {
     protected function onEnable(): void {
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand($this));
+        $this->getServer()->getCommandMap()->register("TNTBlastRadius", new TNTCommand());
 
         $this->worldData = new Config($this->getDataFolder() . "worlddata.json", Config::JSON);
         $this->messages = $this->getConfig()->get("messages", []);
