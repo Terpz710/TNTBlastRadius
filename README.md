@@ -9,6 +9,8 @@
 # Description
 A Pocketmine-MP plugin that allows the user to change the blast radius in-game using a command. When the player runs the command it will send a UI. If you have any questions please feel free to DM me via discord.
 
+All messages/FormMenus are customizable via 'config.yml'
+
 Discord: ace873056  
 
 Enjoy!:)
