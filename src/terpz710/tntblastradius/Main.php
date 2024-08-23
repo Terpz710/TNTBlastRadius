@@ -2,41 +2,56 @@
 
 declare(strict_types=1);
 
-namespace Terpz710\TNTBlastRadius;
+namespace terpz710\tntblastradius;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityPreExplodeEvent;
 use pocketmine\entity\object\PrimedTNT;
 use pocketmine\player\Player;
-use pocketmine\world\World;
 use pocketmine\utils\Config;
 
 use jojoe77777\FormAPI\CustomForm;
-use jojoe77777\FormAPI\SimpleForm;
-use Terpz710\TNTBlastRadius\Command\TNTCommand;
+use jojoe77777\FormAPI\ModalForm;
+use terpz710\tntblastRadius\command\TNTCommand;
 
 class Main extends PluginBase implements Listener {
 
+    private static $instance;
     private $blastRadius = [];
     private $worldData;
+    private $messages;
+    private $formSelector;
+    private $formConfirmation;
 
-    public function onEnable(): void {
+    protected function onLoad() : void{
+        self::$instance = $this;
+    }
+
+    protected function onEnable(): void {
+        $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getCommandMap()->register("tntradius", new TNTCommand($this));
 
-        $this->worldData = new Config($this->getDataFolder() . "worlddata.yml", Config::YAML);
+        $this->worldData = new Config($this->getDataFolder() . "worlddata.json", Config::JSON);
+        $this->messages = $this->getConfig()->get("messages", []);
+        $this->formSelector = $this->getConfig()->get("form_selector", []);
+        $this->formConfirmation = $this->getConfig()->get("form_confirmation", []);
 
         foreach ($this->worldData->getAll() as $world => $radius) {
             $this->blastRadius[$world] = (int)$radius;
         }
     }
 
-    public function onDisable(): void {
+    protected function onDisable(): void {
         foreach ($this->blastRadius as $world => $radius) {
             $this->worldData->set($world, $radius);
         }
         $this->worldData->save();
+    }
+
+    public static function getInstance() : self{
+        return self::$instance;
     }
 
     public function onEntityPreExplode(EntityPreExplodeEvent $event) {
@@ -60,29 +75,29 @@ class Main extends PluginBase implements Listener {
             }
         });
 
-        $form->setTitle("§l§4TNT §0Blast §8Radius §fSelector");
-        $form->addLabel("§l§fSelect the TNT blast radius for all players:");
-        $form->addSlider("§l§fRadius", 1, 25);
+        $form->setTitle($this->formSelector['title']);
+        $form->addLabel($this->formSelector['label']);
+        $form->addSlider($this->formSelector['slider']);
 
         $player->sendForm($form);
     }
 
     public function sendConfirmationUI(Player $player, int $radius) {
-        $confirmForm = new SimpleForm(function (Player $player, ?int $data) use ($radius) {
+        $confirmForm = new ModalForm(function (Player $player, ?bool $data) use ($radius) {
             if ($data !== null) {
-                if ($data === 0) {
+                if ($data) {
                     $this->setTNTBlastRadius($player, $radius);
-                    $player->sendTitle("§l§4Changed to §f{$radius}§4!");
+                    $player->sendTitle(str_replace("{radius}", (string)$radius, $this->messages['radius_changed_title']));
                 } else {
-                    $player->sendMessage("§l§fRadius change canceled!");
+                    $player->sendMessage($this->messages['radius_change_canceled']);
                 }
             }
         });
 
-        $confirmForm->setTitle("§l§4Confirmation");
-        $confirmForm->setContent("§l§fAre you sure to change the radius to §4{$radius}§f?");
-        $confirmForm->addButton("Yes");
-        $confirmForm->addButton("No");
+        $confirmForm->setTitle($this->formConfirmation['title']);
+        $confirmForm->setContent(str_replace("{radius}", (string)$radius, $this->formConfirmation['content']));
+        $confirmForm->setButton1($this->formConfirmation['yes_button']);
+        $confirmForm->setButton2($this->formConfirmation['no_button']);
         $player->sendForm($confirmForm);
     }
 
@@ -91,6 +106,10 @@ class Main extends PluginBase implements Listener {
         $this->blastRadius[$world] = $radius;
         $this->worldData->set($world, $radius);
         $this->worldData->save();
-        $player->sendMessage("§4TNT blast radius changed to §f{$radius}§4 in world §f{$world}§f!");
+        $player->sendMessage(str_replace(
+            ["{radius}", "{world}"],
+            [(string)$radius, $world],
+            $this->messages['radius_change_message']
+        ));
     }
 }
