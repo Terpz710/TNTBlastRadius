@@ -11,7 +11,7 @@ A Pocketmine-MP plugin that allows the user to change the blast radius in-game u
 
 All messages/FormMenus are customizable via 'config.yml'
 
-Enjoy!:)
+Enjoy! :)
 
 # Permissions/Commands
 ```
