@@ -11,8 +11,6 @@ A Pocketmine-MP plugin that allows the user to change the blast radius in-game u
 
 All messages/FormMenus are customizable via 'config.yml'
 
-Discord: ace873056  
-
 Enjoy!:)
 
 # Permissions/Commands
@@ -46,7 +44,3 @@ default:op
 
 **BlastRadiusLevelTwentyFive**
 <img src="https://github.com/Terpz710/TNTBlastRadius/blob/main/screenshots/BlastRadiusLevelTwentyFive.png">
-
-# Dependency
-
-FormAPI by JoJoe77777
