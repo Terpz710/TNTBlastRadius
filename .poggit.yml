@@ -7,6 +7,9 @@ projects:
     path: ""
     icon: icon.png
     libs:
-      - src: jojoe77777/FormAPI/libFormAPI
-        version: ^2.1.1
+       - src: terpz710/pocketforms/PocketForms
+         version: ^1.0.0
+       - src: ACM-PocketMine-MP/Commando/Commando
+         version: ^3.2.1
+    lint: false
 ...
